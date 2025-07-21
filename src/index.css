@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@theme{
+    --color-primary-night:#212529;
+    --color-secondary-night:#2B2F33;
+    --color-night-text:#727577;
+}
