@@ -14,6 +14,8 @@ export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [lineSelect, setLineSelect] = useState({});
   const [loading, setLoading] = useState(true);
+    const [, forceUpdate] = useState(0); // 👈 esto fuerza el re-render
+
   useEffect(() => {
     socket = io(socketURL);
 
@@ -65,6 +67,14 @@ export default function App() {
     setLineSelect(data);
   };
 
+    // 👇 Este es el useEffect que fuerza re-render cada minuto
+  useEffect(() => {
+    const interval = setInterval(() => {
+      forceUpdate((n) => n + 1);
+    }, 60000); // cada 60 segundos
+
+    return () => clearInterval(interval); // limpia al desmontar
+  }, []);
   return (
     <>
       <Toaster position="top-right" />
