@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
   if (!isOpen) return null;
-
+const socketURL=import.meta.env.VITE_SOCKET_URL
   const [newStatus, setNewStatus] = useState(lineSelect.status);
   const [newProduct, setNewProduct] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3010/update-status", {
+      const res = await fetch(`${socketURL}/update-status`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
