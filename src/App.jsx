@@ -81,7 +81,7 @@ export default function App() {
       <div className="bg-primary-night min-h-screen p-6">
         <p className="text-white text-center my-2 mb-6">REAL TIME APP</p>
         {loading ? (
-          <div className="flex flex-col justify-center items-center min-h-screen bg-primary-night">
+          <div className="flex flex-col justify-start items-center min-h-screen bg-primary-night">
             <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
             <p className="mt-4 text-white text-sm">Cargando datos...</p>
           </div>
@@ -120,7 +120,7 @@ export default function App() {
                {
                 machine.meta===null||machine.fabricado===null?(""):(
                      <div className="flex gap-3 flex-col justify-between  items-center ">
-                  <div className="flex flex-col text-center gap-0.5">
+                  <div className="flex flex-col text-center ">
                       <span className="text-3xl text-neutral-200">
                       {((machine.fabricado / machine.meta) * 100).toFixed()}%
                     </span>
