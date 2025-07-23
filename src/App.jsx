@@ -14,7 +14,7 @@ export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [lineSelect, setLineSelect] = useState({});
   const [loading, setLoading] = useState(true);
-    const [, forceUpdate] = useState(0); // 👈 esto fuerza el re-render
+  const [, forceUpdate] = useState(0); // 👈 esto fuerza el re-render
 
   useEffect(() => {
     socket = io(socketURL);
@@ -44,7 +44,7 @@ export default function App() {
       console.log("Datos iniciales recibidos:", machines);
       // Aquí actualizas tu estado o UI
       setMachines(machines);
-          setLoading(false); // ✅ Oculta el loader cuando llega la data
+      setLoading(false); // ✅ Oculta el loader cuando llega la data
 
       console.log(dayjs(machines[0].lastUpdated).fromNow());
     });
@@ -67,7 +67,7 @@ export default function App() {
     setLineSelect(data);
   };
 
-    // 👇 Este es el useEffect que fuerza re-render cada minuto
+  // 👇 Este es el useEffect que fuerza re-render cada minuto
   useEffect(() => {
     const interval = setInterval(() => {
       forceUpdate((n) => n + 1);
@@ -78,37 +78,65 @@ export default function App() {
   return (
     <>
       <Toaster position="top-right" />
-      <div className="bg-primary-night min-h-screen p-4">
-        <p className="text-white text-center my-2 mb-12">REAL TIME APP</p>
+      <div className="bg-neutral-500 min-h-screen p-2">
+        <p className="text-white text-center my-2 mb-6">REAL TIME APP</p>
         {loading ? (
           <div className="flex flex-col justify-center items-center min-h-screen bg-primary-night">
             <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
             <p className="mt-4 text-white text-sm">Cargando datos...</p>
           </div>
         ) : (
-          <div className={`grid grid-cols-2  gap-4 `}>
+          <div className={`grid grid-cols-1 w-full place-items-center  gap-4 `}>
             {machines.map((machine, index) => (
               <div
                 key={index}
                 onClick={() => handleModal(machine)}
-                className={`p-2 px-2 rounded-lg shadow-md mb-4 active:scale-95 transition-transform duration-100 ${
-                  machine.status === "RUN"
-                    ? "text-gray-300 bg-green-600 animate-pulse"
-                    : machine.status === "STOP"
-                    ? "text-gray-300 bg-red-600 animate-pulse"
-                    : "text-gray-300 bg-neutral-600 "
-                }`}
+                className="relative p-2 w-70 h-fit  "
               >
-                <div className="flex justify-start items-center gap-1 ">
-                  <p className="font-bold  text-center">{machine.name}</p>{" "}
-                  <span className="text-sm text-center text-ellipsis truncate">
-                    ({machine.producto})
-                  </span>
+                <div
+                  className={`absolute inset-0  w-full h-full rounded-lg shadow-md  active:scale-95 transition-transform duration-100 ${
+                    machine.status === "RUN"
+                      ? "text-gray-300 bg-green-600 animate-pulse"
+                      : machine.status === "STOP"
+                      ? "text-gray-300 bg-red-600 animate-pulse"
+                      : "text-gray-300 bg-neutral-600 "
+                  }`}
+                ></div>
+                <div className="relative z-10 w-full h-full  flex justify-between items-center p-2 ">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-1">
+                      <p className="font-bold text-white text-left text-center">
+                        {machine.name}
+                      </p>{" "}
+                      <span className="text-sm text-left text-center text-neutral-300 text-ellipsis truncate">
+                        {machine.producto}
+                      </span>
+                    </div>
+                    <p className="text-xs text-white text-left">
+                      {machine.updated_at &&
+                        dayjs(machine.updated_at).fromNow()}
+                    </p>
+                  </div>
+               {
+                machine.meta===null||machine.fabricado===null?(""):(
+                     <div className="flex gap-5 flex-col justify-between  items-center ">
+                  <div className="flex flex-col text-center gap-0.5">
+                      <span className="text-3xl text-neutral-200">
+                      {((machine.fabricado / machine.meta) * 100).toFixed()}%
+                    </span>
+                    <span className="text-xs text-neutral-200">
+                      {machine.fabricado} fdn
+                    </span>
+                  </div>
+                    <div>
+                      <p className="text-xs text-neutral-900">
+                        meta: {machine.meta} fdn
+                      </p>
+                    </div>
+                  </div>
+                )
+               }
                 </div>
-
-                <p className="text-xs text-white text-right">
-                  {machine.updated_at && dayjs(machine.updated_at).fromNow()}
-                </p>
               </div>
             ))}
           </div>

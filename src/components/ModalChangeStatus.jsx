@@ -3,9 +3,11 @@ import toast from "react-hot-toast";
 
 export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
   if (!isOpen) return null;
-const socketURL=import.meta.env.VITE_SOCKET_URL
+  const socketURL = import.meta.env.VITE_SOCKET_URL;
   const [newStatus, setNewStatus] = useState(lineSelect.status);
-  const [newProduct, setNewProduct] = useState("");
+  const [newProduct, setNewProduct] = useState(lineSelect.producto);
+  const [meta, setMeta] = useState(lineSelect.meta);
+  const [fabricado, setFabricado] = useState(lineSelect.fabricado);
   const [loading, setLoading] = useState(false);
 
   const handleStatus = (state) => {
@@ -29,6 +31,16 @@ const socketURL=import.meta.env.VITE_SOCKET_URL
       return;
     }
 
+    if (!fabricado) {
+      toast.error("Por favor  ingresa las unidades fabricadas.");
+      return;
+    }
+
+    if (!meta) {
+      toast.error("Por favor ingresa la meta.");
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch(`${socketURL}/update-status`, {
@@ -38,8 +50,12 @@ const socketURL=import.meta.env.VITE_SOCKET_URL
           id: lineSelect.id,
           status: newStatus,
           producto: newProduct,
+          meta: meta,
+          fabricado: fabricado,
         }),
       });
+
+      console.log(meta, fabricado);
 
       const data = await res.json();
 
@@ -81,9 +97,12 @@ const socketURL=import.meta.env.VITE_SOCKET_URL
               const isCurrent = lineSelect.status === status;
               const isSelected = newStatus === status;
 
-              const baseClasses = "px-4 py-2 rounded-md text-white font-medium transition";
+              const baseClasses =
+                "px-4 py-2 rounded-md text-white font-medium transition";
               const selectedPulse = isSelected ? "animate-pulse" : "";
-              const disabledStyle = isCurrent ? "bg-gray-300 cursor-not-allowed text-gray-700" : "";
+              const disabledStyle = isCurrent
+                ? "bg-gray-300 cursor-not-allowed text-gray-700"
+                : "";
               const bgColor =
                 status === "RUN"
                   ? "bg-green-600 hover:bg-green-700"
@@ -96,7 +115,9 @@ const socketURL=import.meta.env.VITE_SOCKET_URL
                   key={status}
                   onClick={() => handleStatus(status)}
                   disabled={isCurrent}
-                  className={`${baseClasses} ${isCurrent ? disabledStyle : bgColor} ${selectedPulse}`}
+                  className={`${baseClasses} ${
+                    isCurrent ? disabledStyle : bgColor
+                  } ${selectedPulse}`}
                 >
                   {status.replace("_", "-")}
                 </button>
@@ -112,6 +133,34 @@ const socketURL=import.meta.env.VITE_SOCKET_URL
               onChange={(e) => setNewProduct(e.target.value)}
               value={newProduct}
             />
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <div className="mt-5">
+              <input
+                className="bg-gray-200 max-w-80 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                type="text"
+                placeholder="Meta"
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d*\.?\d*$/.test(value)) setMeta(value);
+                }}
+                value={meta}
+              />
+            </div>
+
+            <div className="mt-5">
+              <input
+                className="bg-gray-200 max-w-80 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                type="text"
+                placeholder="Fabricado"
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d*\.?\d*$/.test(value)) setFabricado(value);
+                }}
+                value={fabricado}
+              />
+            </div>
           </div>
 
           <div className="mt-6">
