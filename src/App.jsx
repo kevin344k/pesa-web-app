@@ -78,7 +78,7 @@ export default function App() {
   return (
     <>
       <Toaster position="top-right" />
-      <div className="bg-primary-night min-h-screen p-4">
+      <div className="bg-primary-night min-h-screen p-6">
         <p className="text-white text-center my-2 mb-6">REAL TIME APP</p>
         {loading ? (
           <div className="flex flex-col justify-center items-center min-h-screen bg-primary-night">
