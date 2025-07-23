@@ -119,59 +119,77 @@ export default function App() {
         ) : (
           <div className={`grid grid-cols-1 w-full place-items-center  gap-3 `}>
             {machines.map((machine, index) => (
-              <div
-                key={index}
-                onClick={() => handleModal(machine)}
-                className="relative p-1 w-full h-fit border border-neutral-700 rounded-md "
-              >
+              <div className="w-full">
                 <div
-                  className={`absolute inset-0  w-full h-full  rounded-md active:scale-95 transition-transform duration-100  ${
-                    machine.status === "RUN"
-                      ? "text-gray-300 bg-green-700 animate-pulse"
-                      : machine.status === "STOP"
-                      ? "text-gray-300 bg-red-600 animate-pulse"
-                      : "text-gray-300 bg-neutral-600 "
-                  }`}
-                ></div>
-                <div className="relative z-10 w-full h-full  flex justify-between items-center p-1 ">
-                  <div className="flex flex-col gap-2">
-                    <div className="flex flex-col gap-1">
-                      <p className="font-bold text-white text-left text-center">
-                        {machine.name}
-                      </p>{" "}
-                      <span className="text-sm text-left text-center text-neutral-300 text-ellipsis truncate">
-                        {machine.producto}
-                      </span>
-                    </div>
-                    <p className="text-xs text-white text-left">
-                      {machine.updated_at &&
-                        dayjs(machine.updated_at).fromNow()}
-                    </p>
-                  </div>
-                  {machine.meta === null || machine.fabricado === null ? (
-                    ""
-                  ) : (
-                    <div className="flex gap-3 flex-col justify-between  items-center ">
-                      <div className="flex flex-col text-center ">
-                        <span className="text-2xl text-neutral-200">
-                          <NumberFlow
-                            value={(
-                              (machine.fabricado / machine.meta) *
-                              100
-                            ).toFixed()}
-                          />
-                          <span className="text-md">%</span>
-                        </span>
-                        <p className="text-xs text-neutral-200">
-                          {machine.fabricado} fdn
-                        </p> <span className="text-xs text-neutral-400">
-                        meta: {machine.meta} fdn
+                  key={index}
+                  onClick={() => handleModal(machine)}
+                  className="relative p-1 w-full h-fit border border-neutral-700 rounded-md "
+                >
+                  <div
+                    className={`absolute inset-0  w-full h-full  rounded-md active:scale-95 transition-transform duration-100  ${
+                      machine.status === "RUN"
+                        ? "text-gray-300 bg-green-700 animate-pulse"
+                        : machine.status === "STOP"
+                        ? "text-gray-300 bg-red-600 animate-pulse"
+                        : "text-gray-300 bg-neutral-600 "
+                    }`}
+                  ></div>
+
+                  <div className="relative z-10 w-full h-full  flex justify-between items-center p-1 ">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-1">
+                        <p className="font-bold text-white text-left text-center">
+                          {machine.name}
+                        </p>{" "}
+                        <span className="text-sm text-left text-center text-neutral-300 text-ellipsis truncate">
+                          {machine.producto}
                         </span>
                       </div>
-                   
+                      <p className="text-xs text-white text-left">
+                        {machine.updated_at &&
+                          dayjs(machine.updated_at).fromNow()}
+                      </p>
                     </div>
-                  )}
+                    {machine.meta === null || machine.fabricado === null ? (
+                      ""
+                    ) : (
+                      <div className="flex gap-3 flex-col justify-between  items-center ">
+                        <div className="flex flex-col text-center ">
+                          <span className="text-2xl text-neutral-200">
+                            <NumberFlow
+                              value={(
+                                (machine.fabricado / machine.meta) *
+                                100
+                              ).toFixed()}
+                            />
+                            <span className="text-md">%</span>
+                          </span>
+                          <p className="text-xs text-neutral-200">
+                            {machine.fabricado} fdn
+                          </p>{" "}
+                          <span className="text-xs text-neutral-400">
+                            meta: {machine.meta} fdn
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
+                {machine.paralizacion === null ||
+                machine.descripcion_paralizacion === null ? (
+                  ""
+                ) : (
+                  <div className="flex gap-3 flex-col justify-between w-fit p-1 px-3 m-auto rounded-bl-lg rounded-br-lg bg-transparent border border-neutral-200 border-t-transparent  items-center ">
+                    <div className="flex  text-center ">
+                      <p className="text-xs text-neutral-200">
+                        {machine.paralizacion} : 
+                      </p>{"  "}
+                      <span className="text-xs text-neutral-400">
+                         {machine.descripcion_paralizacion}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

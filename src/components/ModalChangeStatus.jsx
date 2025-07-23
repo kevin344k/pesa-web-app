@@ -63,6 +63,7 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
           meta: meta,
           fabricado: fabricado,
           paralizacion: paralizacionSeleccionada?.codigo || null,
+          descripcion_paralizacion: paralizacionSeleccionada?.descripcion || null,
         }),
       });
 
