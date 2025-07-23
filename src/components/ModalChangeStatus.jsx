@@ -126,10 +126,13 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
           </div>
 
           <div className="mt-5">
+                          <label className="text-purple-500" htmlFor="producto-input">Producto</label>
+
             <input
               className="bg-gray-200 max-w-80 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               type="text"
               placeholder="Producto"
+              id="producto-input"
               onChange={(e) => setNewProduct(e.target.value)}
               value={newProduct}
             />
@@ -137,9 +140,11 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
 
           <div className="grid grid-cols-2 gap-2">
             <div className="mt-5">
+              <label className="text-purple-500" htmlFor="meta-input">Meta</label>
               <input
                 className="bg-gray-200 max-w-80 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
+                id="meta-input"
                 placeholder="Meta"
                 onChange={(e) => {
                   const value = e.target.value;
@@ -150,10 +155,12 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
             </div>
 
             <div className="mt-5">
+              <label className="text-purple-500" htmlFor="fabricado-input">Fabricado</label>
               <input
                 className="bg-gray-200 max-w-80 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 placeholder="Fabricado"
+                  id="fabricado-input"
                 onChange={(e) => {
                   const value = e.target.value;
                   if (/^\d*\.?\d*$/.test(value)) setFabricado(value);
