@@ -78,7 +78,7 @@ export default function App() {
   return (
     <>
       <Toaster position="top-right" />
-      <div className="bg-neutral-500 min-h-screen p-2">
+      <div className="bg-neutral-300 min-h-screen p-2">
         <p className="text-white text-center my-2 mb-6">REAL TIME APP</p>
         {loading ? (
           <div className="flex flex-col justify-center items-center min-h-screen bg-primary-night">
@@ -86,12 +86,12 @@ export default function App() {
             <p className="mt-4 text-white text-sm">Cargando datos...</p>
           </div>
         ) : (
-          <div className={`grid grid-cols-1 w-full place-items-center  gap-4 `}>
+          <div className={`grid grid-cols-1 w-full place-items-center  gap-3 `}>
             {machines.map((machine, index) => (
               <div
                 key={index}
                 onClick={() => handleModal(machine)}
-                className="relative p-2 w-70 h-fit  "
+                className="relative p-1 w-full h-fit  "
               >
                 <div
                   className={`absolute inset-0  w-full h-full rounded-lg shadow-md  active:scale-95 transition-transform duration-100 ${
@@ -103,7 +103,7 @@ export default function App() {
                   }`}
                 ></div>
                 <div className="relative z-10 w-full h-full  flex justify-between items-center p-2 ">
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-3">
                     <div className="flex flex-col gap-1">
                       <p className="font-bold text-white text-left text-center">
                         {machine.name}
@@ -119,7 +119,7 @@ export default function App() {
                   </div>
                {
                 machine.meta===null||machine.fabricado===null?(""):(
-                     <div className="flex gap-5 flex-col justify-between  items-center ">
+                     <div className="flex gap-3 flex-col justify-between  items-center ">
                   <div className="flex flex-col text-center gap-0.5">
                       <span className="text-3xl text-neutral-200">
                       {((machine.fabricado / machine.meta) * 100).toFixed()}%
