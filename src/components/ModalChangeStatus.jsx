@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import ModalParalizaciones from "./ModalParalizaciones";
 
 export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
   if (!isOpen) return null;
@@ -9,14 +10,23 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
   const [meta, setMeta] = useState(lineSelect.meta);
   const [fabricado, setFabricado] = useState(lineSelect.fabricado);
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const [paralizacionSeleccionada, setParalizacionSeleccionada] = useState(null);
 
   const handleStatus = (state) => {
     setNewStatus(state);
+    if (state === "STOP") {
+      setShowModal(true);
+    } else {
+      setParalizacionSeleccionada(null); // Limpiar si no es STOP
+    }
   };
 
   const handleSuccessClose = () => {
     setNewProduct("");
     setNewStatus(lineSelect.status);
+    setParalizacionSeleccionada(null);
     onClose();
   };
 
@@ -32,7 +42,7 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
     }
 
     if (!fabricado) {
-      toast.error("Por favor  ingresa las unidades fabricadas.");
+      toast.error("Por favor ingresa las unidades fabricadas.");
       return;
     }
 
@@ -52,23 +62,25 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
           producto: newProduct,
           meta: meta,
           fabricado: fabricado,
+          paralizacion: paralizacionSeleccionada?.codigo || null,
         }),
       });
 
-      console.log(meta, fabricado);
-
       const data = await res.json();
-
       if (!res.ok) throw new Error(data.message || "Error al actualizar");
 
       toast.success("Actualización exitosa 🎉");
-      handleSuccessClose(); // ✅ Cierra y limpia
+      handleSuccessClose();
     } catch (error) {
       toast.error("Error: " + error.message);
     } finally {
       setLoading(false);
     }
   };
+
+
+
+  
 
   return (
     <div
@@ -126,10 +138,11 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
           </div>
 
           <div className="mt-5">
-                          <label className="text-purple-500" htmlFor="producto-input">Producto</label>
-
+            <label className="text-purple-500" htmlFor="producto-input">
+              Producto
+            </label>
             <input
-              className="bg-gray-200 max-w-80 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="bg-gray-200 max-w-80 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
               type="text"
               placeholder="Producto"
               id="producto-input"
@@ -140,9 +153,11 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
 
           <div className="grid grid-cols-2 gap-2">
             <div className="mt-5">
-              <label className="text-purple-500" htmlFor="meta-input">Meta</label>
+              <label className="text-purple-500" htmlFor="meta-input">
+                Meta
+              </label>
               <input
-                className="bg-gray-200 max-w-80 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-gray-200 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 id="meta-input"
                 placeholder="Meta"
@@ -155,12 +170,14 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
             </div>
 
             <div className="mt-5">
-              <label className="text-purple-500" htmlFor="fabricado-input">Fabricado</label>
+              <label className="text-purple-500" htmlFor="fabricado-input">
+                Fabricado
+              </label>
               <input
-                className="bg-gray-200 max-w-80 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-gray-200 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 placeholder="Fabricado"
-                  id="fabricado-input"
+                id="fabricado-input"
                 onChange={(e) => {
                   const value = e.target.value;
                   if (/^\d*\.?\d*$/.test(value)) setFabricado(value);
@@ -169,6 +186,18 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
               />
             </div>
           </div>
+
+          {/* ✅ Mostrar código y motivo debajo solo si es STOP */}
+          {newStatus === "STOP" && paralizacionSeleccionada && (
+            <div className="mt-6 text-left border-t pt-4">
+              <p className="text-sm text-gray-700">
+                <strong>Código:</strong> {paralizacionSeleccionada.codigo}
+              </p>
+              <p className="text-sm text-gray-700">
+                <strong>Paralizacion:</strong> {paralizacionSeleccionada.descripcion}
+              </p>
+            </div>
+          )}
 
           <div className="mt-6">
             <button
@@ -181,6 +210,16 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
           </div>
         </div>
       </div>
+
+      {/* ✅ Modal de paralizaciones */}
+      <ModalParalizaciones
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onAceptar={({ codigo, descripcion }) => {
+          setParalizacionSeleccionada({ codigo, descripcion });
+          setShowModal(false);
+        }}
+      />
     </div>
   );
 }

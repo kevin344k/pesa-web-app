@@ -12,7 +12,7 @@ let socket;
 const socketURL = import.meta.env.VITE_SOCKET_URL;
 export default function App() {
   const [machines, setMachines] = useState([]);
-  const [open, setOpen] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
   const [lineSelect, setLineSelect] = useState({});
   const [loading, setLoading] = useState(true);
@@ -122,10 +122,10 @@ export default function App() {
               <div
                 key={index}
                 onClick={() => handleModal(machine)}
-                className="relative p-1 w-full h-fit  "
+                className="relative p-1 w-full h-fit border border-neutral-700 rounded-md "
               >
                 <div
-                  className={`absolute inset-0  w-full h-full rounded-lg shadow-md  active:scale-95 transition-transform duration-100 ${
+                  className={`absolute inset-0  w-full h-full  rounded-md active:scale-95 transition-transform duration-100  ${
                     machine.status === "RUN"
                       ? "text-gray-300 bg-green-700 animate-pulse"
                       : machine.status === "STOP"
@@ -164,7 +164,7 @@ export default function App() {
                         </span>
                         <p className="text-xs text-neutral-200">
                           {machine.fabricado} fdn
-                        </p> <span className="text-xs text-neutral-900">
+                        </p> <span className="text-xs text-neutral-400">
                         meta: {machine.meta} fdn
                         </span>
                       </div>

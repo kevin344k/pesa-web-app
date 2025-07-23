@@ -1,0 +1,914 @@
+[
+  {
+    "codigo": 900,
+    "descripcion": "TIEMPOS PERDIDOS MECANICOS"
+  },
+  {
+    "codigo": 901,
+    "descripcion": "TIEMPOS PERDIDOS ELECTRICOS"
+  },
+  {
+    "codigo": 902,
+    "descripcion": "TIEMPOS PERDIDOS MOLdes"
+  },
+  {
+    "codigo": 903,
+    "descripcion": "T. PERDIDO REPARACION TALLER EXTERNO"
+  },
+  {
+    "codigo": 1001,
+    "descripcion": "CAJA REDUCTORA                        "
+  },
+  {
+    "codigo": 1002,
+    "descripcion": "BOMBA HIDRAULICA/AGUA                 "
+  },
+  {
+    "codigo": 1003,
+    "descripcion": "FALLA DE PRENSA MOLDE                 "
+  },
+  {
+    "codigo": 1004,
+    "descripcion": "ROTURA DE MANGUERA                    "
+  },
+  {
+    "codigo": 1005,
+    "descripcion": "ROTURA DE CANERIA                     "
+  },
+  {
+    "codigo": 1006,
+    "descripcion": "DANO CILINDRO O V LVULA HIDRAULICO    "
+  },
+  {
+    "codigo": 1007,
+    "descripcion": "DANO CILINDRO O V LVULA  NEUM TICO    "
+  },
+  {
+    "codigo": 1008,
+    "descripcion": "CAMBIOS DE RETENEDORES                "
+  },
+  {
+    "codigo": 1009,
+    "descripcion": "ESTIRADORES                           "
+  },
+  {
+    "codigo": 1010,
+    "descripcion": "PARALELISMO DE PLACAS PORTA MOLdes    "
+  },
+  {
+    "codigo": 1011,
+    "descripcion": "FUGA DE ACEITE"
+  },
+  {
+    "codigo": 1012,
+    "descripcion": "FALLA BOMBA DE VACIO                  "
+  },
+  {
+    "codigo": 1015,
+    "descripcion": "DAÑO DE MOLINO"
+  },
+  {
+    "codigo": 1016,
+    "descripcion": "DAÑO DE MANIFOLD"
+  },
+  {
+    "codigo": 1017,
+    "descripcion": "DAÑO DE EQUIPO PERIFERICO ( CHILLER Y ABSORVEDORES)"
+  },
+  {
+    "codigo": 1018,
+    "descripcion": "DAÑO DE CUCHILLA DE CORTES"
+  },
+  {
+    "codigo": 1019,
+    "descripcion": "FALTA DE LAMINA POR DAÑO ESTRUSORA"
+  },
+  {
+    "codigo": 1020,
+    "descripcion": "FALLA DE LAMINA POR DAÑO ESTRUSORA"
+  },
+  {
+    "codigo": 1021,
+    "descripcion": "FALLA DEL SIN FIN"
+  },
+  {
+    "codigo": 1022,
+    "descripcion": "DAÑO BRAZO PORTA ENVASE"
+  },
+  {
+    "codigo": 1023,
+    "descripcion": "DAÑO DEL ESTRUSOR"
+  },
+  {
+    "codigo": 1024,
+    "descripcion": "DAÑO DE EXCENTRICA(PERNOS)"
+  },
+  {
+    "codigo": 1025,
+    "descripcion": "DAÑO DE TORNILLO"
+  },
+  {
+    "codigo": 1026,
+    "descripcion": "FALLA DE ROTACION DE MANDRIL DEL SECADO"
+  },
+  {
+    "codigo": 1027,
+    "descripcion": "FALLA DE ROTACION DE MANDRIL DEL PRETRATAMIENTO"
+  },
+  {
+    "codigo": 1028,
+    "descripcion": "DAÑO MECANICO EQUIPO PERIFERICO(MAC DUE)"
+  },
+  {
+    "codigo": 1029,
+    "descripcion": "FALLA DE BLOCK"
+  },
+  {
+    "codigo": 1030,
+    "descripcion": "DAÑO DE CUCHILLA OLLA PORTA TINTA"
+  },
+  {
+    "codigo": 1031,
+    "descripcion": "FALLA DE RODILLO"
+  },
+  {
+    "codigo": 1032,
+    "descripcion": "PARO POR DAÑO DE CORRUGADORA SORBETE"
+  },
+  {
+    "codigo": 1033,
+    "descripcion": "PARO POR DAÑO EXCLUSORA SORBETE"
+  },
+  {
+    "codigo": 1034,
+    "descripcion": "PARO POR DAÑO DE DOBLADORA SORBETE"
+  },
+  {
+    "codigo": 1035,
+    "descripcion": "FALTA DE SORBETE POR DAÑO DE EMPAQUETADORA"
+  },
+  {
+    "codigo": 1036,
+    "descripcion": "DAÑO DE SISTEMA DE EXPULSION"
+  },
+  {
+    "codigo": 1101,
+    "descripcion": "FALLA DE TEMPERATURA DE ZONAS (RESISTE"
+  },
+  {
+    "codigo": 1102,
+    "descripcion": "FALLA DE TARJETAS ELECTRONICAS"
+  },
+  {
+    "codigo": 1103,
+    "descripcion": "MOTOR"
+  },
+  {
+    "codigo": 1104,
+    "descripcion": "FALLA EN TERMOCUPLAS"
+  },
+  {
+    "codigo": 1105,
+    "descripcion": "CONTROL DE MANDO"
+  },
+  {
+    "codigo": 1106,
+    "descripcion": "DAÑO DEL MOOG"
+  },
+  {
+    "codigo": 1107,
+    "descripcion": "DAÑO DEL SENSOR"
+  },
+  {
+    "codigo": 1108,
+    "descripcion": "FALLA DEL HORNO"
+  },
+  {
+    "codigo": 1109,
+    "descripcion": "FALLA DE CONVERTIDOR"
+  },
+  {
+    "codigo": 1201,
+    "descripcion": "FALLA DE EXPULSION                    "
+  },
+  {
+    "codigo": 1202,
+    "descripcion": "GUIAS DE CORTE"
+  },
+  {
+    "codigo": 1203,
+    "descripcion": "DANO ELECTRICO EN EL MOLDE"
+  },
+  {
+    "codigo": 1204,
+    "descripcion": "FUGA DE AGUA                          "
+  },
+  {
+    "codigo": 1205,
+    "descripcion": "GUIAS DE MOLDE                        "
+  },
+  {
+    "codigo": 1206,
+    "descripcion": "DAÑO DE MOLDE"
+  },
+  {
+    "codigo": 1207,
+    "descripcion": "FALTA DE LUBRICACION                  "
+  },
+  {
+    "codigo": 1208,
+    "descripcion": "MOLDE MAL PREPARADO "
+  },
+  {
+    "codigo": 1209,
+    "descripcion": "DAÑO DE POSTIZO EN PROCESO"
+  },
+  {
+    "codigo": 1210,
+    "descripcion": "DAÑO ELECTRICO EQUIPO PERIFERICO"
+  },
+  {
+    "codigo": 1211,
+    "descripcion": "GRADAS"
+  },
+  {
+    "codigo": 1212,
+    "descripcion": "DAÑO DE APILADOR"
+  },
+  {
+    "codigo": 1213,
+    "descripcion": "DAÑO DE CAJA DE CALEFACCION DEL MOLDE"
+  },
+  {
+    "codigo": 1214,
+    "descripcion": "DAÑO DE CORTADORES EN PROCESO"
+  },
+  {
+    "codigo": 1215,
+    "descripcion": "DAÑO DE MOLDE POR MATERIAL INCRUSTADO EN BOQUILLA-PTO INY"
+  },
+  {
+    "codigo": 1301,
+    "descripcion": "CAMBIO DE POSTIZOS                    "
+  },
+  {
+    "codigo": 1302,
+    "descripcion": "CAMBIO DE INSERTOS                    "
+  },
+  {
+    "codigo": 1303,
+    "descripcion": "AJUSTE Y CALIBRACI¢N DE MOLDE         "
+  },
+  {
+    "codigo": 1304,
+    "descripcion": "CAMBIO DE FECHERO O LOGOTIPO          "
+  },
+  {
+    "codigo": 1305,
+    "descripcion": "COLOCACION Y CAMBIOS DE ACOPLES       "
+  },
+  {
+    "codigo": 1306,
+    "descripcion": "CAMBIO DE TIPO DE LAMINA              "
+  },
+  {
+    "codigo": 1307,
+    "descripcion": "CAMBIO DE NARIZ                       "
+  },
+  {
+    "codigo": 1308,
+    "descripcion": "CAMBIO DE MANTILLA                    "
+  },
+  {
+    "codigo": 1309,
+    "descripcion": "CAMBIO DE MANDRILES                   "
+  },
+  {
+    "codigo": 1310,
+    "descripcion": "CAMBIO DE CLISE Y CALIBRACION         "
+  },
+  {
+    "codigo": 1311,
+    "descripcion": "CAMBIO DE MOLDE                       "
+  },
+  {
+    "codigo": 1312,
+    "descripcion": "ATRASO DE CAMBIO DE MOLDE"
+  },
+  {
+    "codigo": 1313,
+    "descripcion": "ARRANQUE Y CALIBRACION (C.M.)"
+  },
+  {
+    "codigo": 1314,
+    "descripcion": "REGULACION DEL UV (C.M.)"
+  },
+  {
+    "codigo": 1315,
+    "descripcion": "REGULACION DE CARGA Y desCARGA DEL AIRE (C.M.)"
+  },
+  {
+    "codigo": 1316,
+    "descripcion": "REGULACION DE UNIDAD ENTINTADORA(angulo,presion y altura) C.M."
+  },
+  {
+    "codigo": 1317,
+    "descripcion": "REGULACION DE LOS ELECTRODOS (C.M.)"
+  },
+  {
+    "codigo": 1318,
+    "descripcion": "REGULACION DEL ESTABILIZADOR DE TARRINA (C.M.)"
+  },
+  {
+    "codigo": 1319,
+    "descripcion": "CALIBRACION DE COLORES (C.M.)"
+  },
+  {
+    "codigo": 1320,
+    "descripcion": "CALIBRACION Y AJUSTES DE SENSOR DE DOBLE VASO (C.M.)"
+  },
+  {
+    "codigo": 1321,
+    "descripcion": "CALIBRACION DE GUIAS (C.M.)"
+  },
+  {
+    "codigo": 1322,
+    "descripcion": "CALIBRACION DE ACUMULADORA DE TAPAS (C.M.)"
+  },
+  {
+    "codigo": 1323,
+    "descripcion": "LIMPIEZA DE BLOCK (C.M.)"
+  },
+  {
+    "codigo": 1324,
+    "descripcion": "LIMPIEZA DE RODILLO Y TAMBOR (C.M.)"
+  },
+  {
+    "codigo": 1325,
+    "descripcion": "LIMPIEZA DE TAMPOS (C.M.)"
+  },
+  {
+    "codigo": 1326,
+    "descripcion": "LIMPIEZA DE OLLA PORTA TINTA (C.M.)"
+  },
+  {
+    "codigo": 1327,
+    "descripcion": "LIMPIEZA DE CLISE (C.M.)"
+  },
+  {
+    "codigo": 1328,
+    "descripcion": "LIMPIEZA DE MANTILLA (C.M.)"
+  },
+  {
+    "codigo": 1329,
+    "descripcion": "PREPARACION DE TINTAS (C.M.)"
+  },
+  {
+    "codigo": 1330,
+    "descripcion": "COLOCACION DE RETARDANTE (C.M.)"
+  },
+  {
+    "codigo": 1331,
+    "descripcion": "CALIBRACION Y ARREGLO DE desPLAZAMIENTO DE RODILLOS"
+  },
+  {
+    "codigo": 1332,
+    "descripcion": "CAMBIO DE IMPRESION (nuevo formato)"
+  },
+  {
+    "codigo": 1333,
+    "descripcion": "CAMBIO DE MOLDE NO PLANIFICADO"
+  },
+  {
+    "codigo": 1400,
+    "descripcion": "CALENTAMIENTO DE MAQUINA PLANEADO"
+  },
+  {
+    "codigo": 1401,
+    "descripcion": "ARRANQUE DE MAQUINA, CABEZAL, MOLdes  "
+  },
+  {
+    "codigo": 1402,
+    "descripcion": "ARRANQUE Y CALIBRACION(PROCESO)"
+  },
+  {
+    "codigo": 1501,
+    "descripcion": "PESO Y MANGA                          "
+  },
+  {
+    "codigo": 1502,
+    "descripcion": "FORMADOR                              "
+  },
+  {
+    "codigo": 1503,
+    "descripcion": "FALLA EN  LAMINA                       "
+  },
+  {
+    "codigo": 1504,
+    "descripcion": "REGULACION  CUCHILLA DE CORTE                "
+  },
+  {
+    "codigo": 1505,
+    "descripcion": "CALIBRACI¢N DEL PUNTO DE INYECCION    "
+  },
+  {
+    "codigo": 1506,
+    "descripcion": "CALIBRACION DE TROQUEL"
+  },
+  {
+    "codigo": 1507,
+    "descripcion": "CALIBRACIÓN DEL MOOG"
+  },
+  {
+    "codigo": 1508,
+    "descripcion": "INCLINACI¢N O DEFORMACION DEL PRODUCT "
+  },
+  {
+    "codigo": 1509,
+    "descripcion": "CALIBRACION DE SENSOR DE CORTE"
+  },
+  {
+    "codigo": 1510,
+    "descripcion": "CALIBRACIÓN LABIOS DE CABEZAL"
+  },
+  {
+    "codigo": 1511,
+    "descripcion": "REGULACION DE ESTIRADORES             "
+  },
+  {
+    "codigo": 1512,
+    "descripcion": "REGULACION DE EXPULSORES              "
+  },
+  {
+    "codigo": 1513,
+    "descripcion": "REGULACION DE GUIAS DE CORTE          "
+  },
+  {
+    "codigo": 1514,
+    "descripcion": "REGULACION DE ENTRADA DE TARRINAS     "
+  },
+  {
+    "codigo": 1515,
+    "descripcion": "REGULACION DE desCARGA DE TARRINAS    "
+  },
+  {
+    "codigo": 1516,
+    "descripcion": "REGULACION DEL UV                     "
+  },
+  {
+    "codigo": 1517,
+    "descripcion": "REGULACION DE CARGA/desCARGA DE AIRE  "
+  },
+  {
+    "codigo": 1518,
+    "descripcion": "REGULACION UNIDAD ENTINTADORA         "
+  },
+  {
+    "codigo": 1519,
+    "descripcion": "REGULACION DE ELECTRODOS              "
+  },
+  {
+    "codigo": 1520,
+    "descripcion": "REGULACION DE ESTABILIZADOR DE TARRINA"
+  },
+  {
+    "codigo": 1521,
+    "descripcion": "REGULACION DE REGISTRADOR DE BALDE    "
+  },
+  {
+    "codigo": 1522,
+    "descripcion": "CALIBRACION DE COLORES                "
+  },
+  {
+    "codigo": 1523,
+    "descripcion": "CALIBRACION Y AJUSTE DE SENSOR DE VASO"
+  },
+  {
+    "codigo": 1524,
+    "descripcion": "CALIBRACION Y ARREGLO desPLAZ. RODILLA"
+  },
+  {
+    "codigo": 1525,
+    "descripcion": "CALIBRACION DE GUIAS                  "
+  },
+  {
+    "codigo": 1526,
+    "descripcion": "CALIBRACION ACUMULADA DE TAPAS"
+  },
+  {
+    "codigo": 1527,
+    "descripcion": "REGULACION SELLADO UNIGRIP"
+  },
+  {
+    "codigo": 1529,
+    "descripcion": "CAMBIO DE CLISE"
+  },
+  {
+    "codigo": 1530,
+    "descripcion": "CAMBIO DE MANTILLA (P.)"
+  },
+  {
+    "codigo": 1531,
+    "descripcion": "CAMBIO DE CLISE Y CALIBRACION(P.)"
+  },
+  {
+    "codigo": 1532,
+    "descripcion": "CALIBRACION DE TAMPOS"
+  },
+  {
+    "codigo": 1533,
+    "descripcion": "desGASTE BASE PLACA PORTA CLISE"
+  },
+  {
+    "codigo": 1601,
+    "descripcion": "CAMBIO DE MALLAS                      "
+  },
+  {
+    "codigo": 1701,
+    "descripcion": "MATERIAL CONTAMINADO                  "
+  },
+  {
+    "codigo": 1702,
+    "descripcion": "MALA MEZCLA, TONO INCORRECTO          "
+  },
+  {
+    "codigo": 1703,
+    "descripcion": "MALA MEZCLA POR EL OPERADOR"
+  },
+  {
+    "codigo": 1801,
+    "descripcion": "SUCIO                                 "
+  },
+  {
+    "codigo": 1802,
+    "descripcion": "SIN RACORES                           "
+  },
+  {
+    "codigo": 1900,
+    "descripcion": "LUBRICACION   Planificada"
+  },
+  {
+    "codigo": 1901,
+    "descripcion": "LUBRICACION DIARIA                    "
+  },
+  {
+    "codigo": 2000,
+    "descripcion": "FALTA DE AGUA HELADA                  "
+  },
+  {
+    "codigo": 2100,
+    "descripcion": "FALTA DE AGUA NORMAL                  "
+  },
+  {
+    "codigo": 2200,
+    "descripcion": "FALTA PRESION DE AIRE                         "
+  },
+  {
+    "codigo": 2301,
+    "descripcion": "MATERIA PRIMA                         "
+  },
+  {
+    "codigo": 2302,
+    "descripcion": "INSUMOS                               "
+  },
+  {
+    "codigo": 2303,
+    "descripcion": "LAMINAS                               "
+  },
+  {
+    "codigo": 2304,
+    "descripcion": "SUB PRODUCTOS-FALTA DE SUMINISTROS    "
+  },
+  {
+    "codigo": 2305,
+    "descripcion": "FALTA DE SORBETE POR CAMBIO DE AGUA EN EXTRUSORA"
+  },
+  {
+    "codigo": 2401,
+    "descripcion": "INASISTENCIA                          "
+  },
+  {
+    "codigo": 2402,
+    "descripcion": "FALTA PERSONAL                        "
+  },
+  {
+    "codigo": 2403,
+    "descripcion": "ENFERMEDAD DE PERSONAL/CITAS MEDICAS"
+  },
+  {
+    "codigo": 2404,
+    "descripcion": "AUSENCIA DE PERSONAL "
+  },
+  {
+    "codigo": 2501,
+    "descripcion": "ABSORVEDOR MATERIA PRIMA(MECAN-ELECT) "
+  },
+  {
+    "codigo": 2502,
+    "descripcion": "LIMPIEZA ABORVEDOR MATERIA PRIMA      "
+  },
+  {
+    "codigo": 2503,
+    "descripcion": "FALLA TEMPERATURA DE CALENTADOR AGUA  "
+  },
+  {
+    "codigo": 2504,
+    "descripcion": "FALLA SELLADO UNIGRIP                 "
+  },
+  {
+    "codigo": 2505,
+    "descripcion": "CALANDRAS TAPADAS"
+  },
+  {
+    "codigo": 2601,
+    "descripcion": "FALLA CALDERO                         "
+  },
+  {
+    "codigo": 2701,
+    "descripcion": "FALLA EQUIPO DE GAS                   "
+  },
+  {
+    "codigo": 2801,
+    "descripcion": "MATERIAS PRIMAS-MASTERBACHS           "
+  },
+  {
+    "codigo": 2802,
+    "descripcion": "MOLdes, EQUIPOS E INVESTIGACION Y desA"
+  },
+  {
+    "codigo": 2803,
+    "descripcion": "PRUEBAS IMPRESION(TINTA,DISEÑO,COLORES)"
+  },
+  {
+    "codigo": 2804,
+    "descripcion": "EN ESPERA DE APROBACION DE CLIENTE"
+  },
+  {
+    "codigo": 2901,
+    "descripcion": "REPUESTOS                             "
+  },
+  {
+    "codigo": 2902,
+    "descripcion": "MECANICO OCUPADO                             "
+  },
+  {
+    "codigo": 2903,
+    "descripcion": "FALTA DE MONTACARGA                        "
+  },
+  {
+    "codigo": 2904,
+    "descripcion": "ELABORACION DE SCREEM - AUTORROL"
+  },
+  {
+    "codigo": 2905,
+    "descripcion": "ATRASO EN ESPERA DE APROBACION CLIENTE"
+  },
+  {
+    "codigo": 2906,
+    "descripcion": "ATRASO EN ESPERA DE APROBACION CALIDAD"
+  },
+  {
+    "codigo": 2907,
+    "descripcion": "LIDERES DE PROCESO OCUPADO"
+  },
+  {
+    "codigo": 3100,
+    "descripcion": "MANTENIMIENTO PREVENTIVO              "
+  },
+  {
+    "codigo": 3101,
+    "descripcion": "ATRASO DE MANTENIMIENTO PREVENTIVO"
+  },
+  {
+    "codigo": 3201,
+    "descripcion": "FALTA DE ENERGIA INTERNA              "
+  },
+  {
+    "codigo": 3202,
+    "descripcion": "FALTA DE ENERGIA EXTERNA              "
+  },
+  {
+    "codigo": 3301,
+    "descripcion": "NO ARRASTRA MATERIAL, MATERIAL PLASTIF"
+  },
+  {
+    "codigo": 3302,
+    "descripcion": "PURGAS                                "
+  },
+  {
+    "codigo": 3303,
+    "descripcion": "CAMBIO DE PRODUCTO (DISTINTA MATERIA P"
+  },
+  {
+    "codigo": 3304,
+    "descripcion": "CAMBIO DE BOQUILLA                    "
+  },
+  {
+    "codigo": 3305,
+    "descripcion": "LIMPIEZA DE BLOCK                     "
+  },
+  {
+    "codigo": 3306,
+    "descripcion": "LIMPIEZA DE RODILLO Y TAMBOR          "
+  },
+  {
+    "codigo": 3307,
+    "descripcion": "LIMPIEZA DE TAMPOS                    "
+  },
+  {
+    "codigo": 3308,
+    "descripcion": "LIMPIEZA DE OLLA PORTA TINTA          "
+  },
+  {
+    "codigo": 3309,
+    "descripcion": "LIMPIEZA DE BOQUILLA"
+  },
+  {
+    "codigo": 3310,
+    "descripcion": "LIMPIEZA DE TORNILLO"
+  },
+  {
+    "codigo": 3311,
+    "descripcion": "LIMPIEZA DE CLISE"
+  },
+  {
+    "codigo": 3312,
+    "descripcion": "LIMPIEZA DE MANTILLA"
+  },
+  {
+    "codigo": 3313,
+    "descripcion": "LIMPIEZA DE ELECTRODO"
+  },
+  {
+    "codigo": 3314,
+    "descripcion": "LIMPIEZA DE BANDA"
+  },
+  {
+    "codigo": 3315,
+    "descripcion": "LIMPIEZA DE PLACAS"
+  },
+  {
+    "codigo": 3317,
+    "descripcion": "LIMPIEZA DE CABEZAL(PUNTOS NEGROS, LAMINAS RAYADAS, ETC)"
+  },
+  {
+    "codigo": 3318,
+    "descripcion": "PURGA DE SOPLADO"
+  },
+  {
+    "codigo": 3400,
+    "descripcion": "SUBIDA O MONTAJE DE ROLLOS            "
+  },
+  {
+    "codigo": 3500,
+    "descripcion": "PARO POR ALIMENTACION                 "
+  },
+  {
+    "codigo": 3600,
+    "descripcion": "CAMBIO DE COLOR                       "
+  },
+  {
+    "codigo": 3700,
+    "descripcion": "CAMBIO DE MATERIA PRIMA               "
+  },
+  {
+    "codigo": 3901,
+    "descripcion": "MATERIA PRIMA"
+  },
+  {
+    "codigo": 3902,
+    "descripcion": "INSUMOS"
+  },
+  {
+    "codigo": 3903,
+    "descripcion": "ROLLOS DE MATERIAL DE EMPAQUES"
+  },
+  {
+    "codigo": 3906,
+    "descripcion": "PARALIZACION POR COMPRA REPUESTO"
+  },
+  {
+    "codigo": 3908,
+    "descripcion": "FALLA DE MANTILLA"
+  },
+  {
+    "codigo": 4001,
+    "descripcion": "PREPARACION DE TINTAS                 "
+  },
+  {
+    "codigo": 4002,
+    "descripcion": "COLOCACION DE RETARDANTES             "
+  },
+  {
+    "codigo": 4003,
+    "descripcion": "LIMPIEZA DE ENVASES                   "
+  },
+  {
+    "codigo": 4004,
+    "descripcion": "CAMBIO DE AGUA EXTRUSORA"
+  },
+  {
+    "codigo": 4005,
+    "descripcion": "TRASPASO DE MATERIAL A TOLVA"
+  },
+  {
+    "codigo": 4006,
+    "descripcion": "MEZCLA DE MATERIALES EPS"
+  },
+  {
+    "codigo": 4101,
+    "descripcion": "CAMBIO DE RODAMIENTOS                 "
+  },
+  {
+    "codigo": 4102,
+    "descripcion": "CAMBIO DE LAMPARA UV                  "
+  },
+  {
+    "codigo": 4103,
+    "descripcion": "CAMBIO DE BANDAS                      "
+  },
+  {
+    "codigo": 4401,
+    "descripcion": "PLANTA LLENA"
+  },
+  {
+    "codigo": 4402,
+    "descripcion": "BODEGAS LLENAS"
+  },
+  {
+    "codigo": 4403,
+    "descripcion": "INVENTARIOS EN BODEGAS EXTERNAS "
+  },
+  {
+    "codigo": 4501,
+    "descripcion": "MATERIAL HUMEDO"
+  },
+  {
+    "codigo": 4502,
+    "descripcion": "ATRASO ENTREGA MATERIALES"
+  },
+  {
+    "codigo": 4601,
+    "descripcion": "FALLA DE CALIDAD DE ROLLOS DE FUNDA PARA EQUIPO PERIFERICO"
+  },
+  {
+    "codigo": 4701,
+    "descripcion": "SIN ORDEN"
+  },
+  {
+    "codigo": 4702,
+    "descripcion": "CHARLAS A PERSONAL( BRIGADAS-SEGURIDAD-ACTOS VARIOS)"
+  },
+  {
+    "codigo": 4703,
+    "descripcion": "LIMPIEZA DE MAQUINAS Y AREA"
+  },
+  {
+    "codigo": 4704,
+    "descripcion": "PINTADO DE AREA"
+  },
+  {
+    "codigo": 4705,
+    "descripcion": "TRABAJOS INGENIERIA (PISO,TECHO,ELECTRICO)"
+  },
+  {
+    "codigo": 4706,
+    "descripcion": "MAQ. NO PROG. PRODUCCION"
+  },
+  {
+    "codigo": 4707,
+    "descripcion": "MAQ. NO PROG. PLANEACION"
+  },
+  {
+    "codigo": 4708,
+    "descripcion": "FALTA DE PERSONAL POR PLANIFICACION"
+  },
+  {
+    "codigo": 4709,
+    "descripcion": "PREPARACION DE TRABAJOS EN ALTURA 1.8 MTS PRODUCCION"
+  },
+  {
+    "codigo": 4710,
+    "descripcion": "PREPARACION DE TRABAJOS EN ALTURA 1.8 MTS MANTENIMIENTO"
+  },
+  {
+    "codigo": 4711,
+    "descripcion": "PREPARACION DE TRABAJOS EN ALTURA 1.8 MTS INGENIERIA"
+  },
+  {
+    "codigo": 4712,
+    "descripcion": "ATORAMIENTO DE MOLINO (OPERACIONAL)"
+  },
+  {
+    "codigo": 4713,
+    "descripcion": "TRANSFERENCIA DE PERSONAL A OTRA LINEA"
+  },
+  {
+    "codigo": 4714,
+    "descripcion": "ATORAMIENTO DE MOLINO (MECÁNICO)"
+  },
+  {
+    "codigo": 4715,
+    "descripcion": "FALTA DE CONTENEDORES"
+  }
+]
