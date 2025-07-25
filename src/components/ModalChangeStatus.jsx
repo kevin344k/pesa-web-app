@@ -11,8 +11,12 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
   const [fabricado, setFabricado] = useState(lineSelect.fabricado);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [codigos, setCodigos] = useState([]);
+  const [codigoProd, setcodigoProd] = useState(lineSelect.codigo ?? "");
+  const [paralizacionSeleccionada, setParalizacionSeleccionada] =
+    useState(null);
+    const [buscando, setBuscando] = useState(false);
 
-  const [paralizacionSeleccionada, setParalizacionSeleccionada] = useState(null);
 
   const handleStatus = (state) => {
     setNewStatus(state);
@@ -59,11 +63,13 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
         body: JSON.stringify({
           id: lineSelect.id,
           status: newStatus,
+          codigo:codigoProd,
           producto: newProduct,
           meta: meta,
           fabricado: fabricado,
           paralizacion: paralizacionSeleccionada?.codigo || null,
-          descripcion_paralizacion: paralizacionSeleccionada?.descripcion || null,
+          descripcion_paralizacion:
+            paralizacionSeleccionada?.descripcion || null,
         }),
       });
 
@@ -79,9 +85,36 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
     }
   };
 
+let buscarTimeout;
 
+const handleChangeInputCodigo = async (value) => {
+  clearTimeout(buscarTimeout);
+  setcodigoProd(value);
+  setBuscando(true);
 
-  
+  buscarTimeout = setTimeout(async () => {
+    try {
+      const res = await fetch(`${socketURL}/productos`);
+      const data = await res.json();
+      setCodigos(data);
+
+      const encontrado = data.find(
+        (prod) => prod.item.trim() === value.trim().toUpperCase()
+      );
+
+      if (encontrado) {
+        setNewProduct(encontrado.observacion);
+      } else {
+        setNewProduct("NO ENCONTRADO");
+      }
+    } catch (error) {
+      console.error("Error al buscar código:", error);
+    } finally {
+      setBuscando(false);
+    }
+  }, 600); // espera 600ms tras la última tecla
+};
+
 
   return (
     <div
@@ -138,18 +171,39 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
             })}
           </div>
 
-          <div className="mt-5">
-            <label className="text-purple-500" htmlFor="producto-input">
-              Producto
-            </label>
-            <input
-              className="bg-gray-200 max-w-80 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
-              type="text"
-              placeholder="Producto"
-              id="producto-input"
-              onChange={(e) => setNewProduct(e.target.value)}
-              value={newProduct}
-            />
+          <div className=" flex flex-col text-left">
+            <div className="mt-5 flex flex-col ">
+              <label className="text-purple-500" htmlFor="producto-input">
+                Producto
+              </label>
+              <input
+                className="bg-gray-200 text-gray-600 max-w-80 border-2 border-gray-200 rounded w-full py-2 px-4 text-neutral-400 focus:outline-none focus:bg-white focus:border-purple-500"
+                type="text"
+               placeholder={buscando ? "Buscando..." : ""}
+                id="producto-input"
+                onChange={(e) => setNewProduct(e.target.value)}
+                value={newProduct}
+                disabled
+              />
+            </div>
+            <div className="mt-5 flex gap-1 flex-col">
+              <label className="text-purple-500" htmlFor="producto-input">
+                Codigo
+              </label>
+              <input
+                className="bg-gray-200 max-w-30 border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
+                type="text"
+                placeholder="Codigo"
+                id="codigo-input"
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^[a-zA-Z0-9]*$/.test(value)) {
+                    handleChangeInputCodigo(value);
+                  }
+                }}
+                value={codigoProd ?? ""}
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
@@ -195,7 +249,8 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
                 <strong>Código:</strong> {paralizacionSeleccionada.codigo}
               </p>
               <p className="text-sm text-gray-700">
-                <strong>Paralizacion:</strong> {paralizacionSeleccionada.descripcion}
+                <strong>Paralizacion:</strong>{" "}
+                {paralizacionSeleccionada.descripcion}
               </p>
             </div>
           )}

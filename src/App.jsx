@@ -119,9 +119,9 @@ export default function App() {
         ) : (
           <div className={`grid grid-cols-1 w-full place-items-center  gap-3 `}>
             {machines.map((machine, index) => (
-              <div className="w-full">
+              <div key={index} className="w-full">
                 <div
-                  key={index}
+                  
                   onClick={() => handleModal(machine)}
                   className="relative p-1 w-full h-fit border border-neutral-700 rounded-md "
                 >
@@ -138,10 +138,10 @@ export default function App() {
                   <div className="relative z-10 w-full h-full  flex justify-between items-center p-1 ">
                     <div className="flex flex-col gap-2">
                       <div className="flex flex-col gap-1">
-                        <p className="font-bold text-white text-left text-center">
+                        <p className="font-bold  text-white text-left text-center">
                           {machine.name}
                         </p>{" "}
-                        <span className="text-sm text-left text-center text-neutral-300 text-ellipsis truncate">
+                        <span className="text-sm max-w-[170px] text-left text-center text-neutral-300 text-ellipsis truncate">
                           {machine.producto}
                         </span>
                       </div>
