@@ -1,0 +1,9 @@
+.tooltip {
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.tooltip.show {
+  opacity: 1;
+  pointer-events: auto;
+}
