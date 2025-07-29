@@ -22,7 +22,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [sort, setSort] = useState("asc");
   const [, forceUpdate] = useState(0);
-  const [timeRange, setTimeRange] = useState("24h");
+  const [timeRanges, setTimeRanges] = useState({});
 
   const ranges = ["24h", "48h", "72h", "7d", "1m"];
   // Cuando cambias a Home, pido los datos y activo loader
@@ -190,7 +190,7 @@ export default function Home() {
                       e.stopPropagation();
                       toggleExpand(machine.id);
                     }}
-                    className="ml-4 text-white hover:scale-110 transition-transform"
+                    className="ml-2 text-white hover:scale-110 transition-transform"
                     title="Ver historial"
                   >
                     {expandedMachines[machine.id] ? "⬆️" : "⬇️"}
@@ -205,13 +205,18 @@ export default function Home() {
     }`}
                 >
                   {/* Botones para elegir rango */}
-                  <div className="flex gap-1 mr-auto">
+                  <div className="flex gap-1 pl-2 pt-2 mr-auto">
                     {ranges.map((range) => (
                       <button
                         key={range}
-                        onClick={() => setTimeRange(range)}
+                        onClick={() =>
+                          setTimeRanges((prev) => ({
+                            ...prev,
+                            [machine.id]: range, // Solo cambia el rango de esa máquina
+                          }))
+                        }
                         className={`px-2 py-1 rounded text-xs border border-neutral-400 ${
-                          timeRange === range
+                        timeRanges[machine.id] === range
                             ? "bg-neutral-400 text-white"
                             : "bg-primary-night text-neutral-200 hover:bg-gray-300"
                         }`}
@@ -223,7 +228,7 @@ export default function Home() {
 
                   <TimelineRUNSTOP
                     machineId={machine.id}
-                    timeRange={timeRange}
+                     timeRange={timeRanges[machine.id] || "24h"} // Valor por defecto
                   />
                 </div>
               </div>
