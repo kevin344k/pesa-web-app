@@ -10,7 +10,7 @@ export default function SidebarMobile() {
     <>
       {/* Botón hamburguesa */}
       <button
-        className="fixed top-4 left-4 z-50 bg-neutral-600 p-2 rounded shadow-md md:hidden"
+        className="fixed top-4 left-4 z-50 bg-neutral-300 p-2 rounded shadow-md md:hidden"
         onClick={() => setOpen(true)}
       >
         <Menu size={20} />
