@@ -76,6 +76,7 @@ export default function Home() {
     });
 
     setMachines(sorted);
+    
   };
 
   const [expandedMachines, setExpandedMachines] = useState({});
@@ -190,10 +191,25 @@ export default function Home() {
                       e.stopPropagation();
                       toggleExpand(machine.id);
                     }}
-                    className="ml-2 text-white hover:scale-110 transition-transform"
+                    className="ml-2 text-white hover:scale-110 transition-transform rounded"
                     title="Ver historial"
                   >
-                    {expandedMachines[machine.id] ? "⬆️" : "⬇️"}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`w-5 h-5 transform transition-transform duration-200 ${
+                        expandedMachines[machine.id] ? "rotate-180" : "rotate-0"
+                      }`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
                   </button>
                 </div>
                 <div
@@ -216,7 +232,7 @@ export default function Home() {
                           }))
                         }
                         className={`px-2 py-1 rounded text-xs border border-neutral-400 ${
-                        timeRanges[machine.id] === range
+                          timeRanges[machine.id] === range || (!timeRanges[machine.id] && range === "24h")
                             ? "bg-neutral-400 text-white"
                             : "bg-primary-night text-neutral-200 hover:bg-gray-300"
                         }`}
@@ -228,7 +244,7 @@ export default function Home() {
 
                   <TimelineRUNSTOP
                     machineId={machine.id}
-                     timeRange={timeRanges[machine.id] || "24h"} // Valor por defecto
+                    timeRange={timeRanges[machine.id] || "24h"} // Valor por defecto
                   />
                 </div>
               </div>
