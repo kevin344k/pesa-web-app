@@ -100,9 +100,14 @@ export default function Timeline({ machineId, timeRange }) {
       .attr("y", 10)
       .attr("width", (d) => x(d.end) - x(d.start))
       .attr("height", 20)
-        .attr("rx", 2) // esquinas redondeadas
-  .attr("ry", 2) // esquinas redondeadas
-      .attr("fill", (d) => (d.status === "RUN" ? "#4ade80" : "#f87171"))
+        .attr("rx", 1) // esquinas redondeadas
+  .attr("ry", 1) // esquinas redondeadas
+      .attr("fill", (d) => ({
+  RUN: "#4ade80",
+  STOP: "#f87171",
+  SIN_OP: "#9ca3af",
+}[d.status] || "#f87171")) // fallback rojo
+
       .on("mouseover", function (event, d) {
         const durationMinutes = Math.round((d.end - d.start) / (1000 * 60));
         const durationText =

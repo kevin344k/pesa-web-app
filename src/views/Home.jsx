@@ -43,7 +43,6 @@ export default function Home() {
     socket.on("status_updated", (updatedMachines) => {
       if (Array.isArray(updatedMachines)) {
         setMachines(updatedMachines);
-        toast.success("Estado actualizado");
       }
     });
 
@@ -76,7 +75,6 @@ export default function Home() {
     });
 
     setMachines(sorted);
-    
   };
 
   const [expandedMachines, setExpandedMachines] = useState({});
@@ -90,7 +88,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="bg-primary-night min-h-screen p-6">
+      <div className="bg-primary-night min-h-screen p-6 pr-3">
         <p className="text-white text-center my-1">REAL TIME APP</p>
 
         <div className="flex justify-end mb-2">
@@ -113,7 +111,7 @@ export default function Home() {
               <div key={index} className="w-full ">
                 <div
                   className={`  relative ${
-                    machine.status === "STOP" ? "mt-10" : ""
+                    machine.status === "STOP" || machine.status === "SIN_OP"   ? "mt-5" : ""
                   } flex `}
                 >
                   <div
@@ -136,7 +134,7 @@ export default function Home() {
                           <p className="font-bold text-white text-left text-center">
                             {machine.name}
                           </p>
-                          <span className="text-sm max-w-[170px] text-left text-center text-neutral-300 text-ellipsis truncate">
+                          <span className="text-sm max-w-[190px] text-left text-center text-neutral-300 text-ellipsis truncate">
                             {machine.producto}
                           </span>
                         </div>
@@ -149,9 +147,9 @@ export default function Home() {
                       {machine.meta === null || machine.fabricado === null ? (
                         ""
                       ) : (
-                        <div className="flex z-5 gap-3 flex-col justify-between items-center">
-                          <div className="flex flex-col text-center">
-                            <span className="text-2xl text-neutral-200">
+                        <div className="flex z-5 gap-3 flex  w-fit  h-full  justify-between items-center text-left">
+                          <div className="flex flex-col justify-between text-center">
+                            <span className="text-2xl tetx-left mb-3 text-neutral-200">
                               <NumberFlow
                                 value={(
                                   (machine.fabricado / machine.meta) *
@@ -160,12 +158,14 @@ export default function Home() {
                               />
                               <span className="text-md">%</span>
                             </span>
-                            <p className="text-xs text-neutral-200">
-                              {machine.fabricado} fdn
+                            <div className="flex">
+                              <p className="text-xs text-neutral-200">
+                              {machine.fabricado}/
                             </p>
                             <span className="text-xs text-neutral-400">
-                              meta: {machine.meta} fdn
+                               {machine.meta} F
                             </span>
+                            </div>
                           </div>
                         </div>
                       )}
@@ -213,12 +213,11 @@ export default function Home() {
                   </button>
                 </div>
                 <div
-                  className={`overflow-hidden transition-all duration-300 border border-neutral-600 rounded flex flex-col items-center justify-center mt-2
-    ${
-      expandedMachines[machine.id]
-        ? "max-h-[1000px] opacity-100 "
-        : "max-h-0 opacity-0 p-0"
-    }`}
+                  className={` overflow-hidden transition-all duration-300 border border-neutral-600 rounded flex flex-col items-center justify-center mt-1 ${
+                    expandedMachines[machine.id]
+                      ? "max-h-[1000px] opacity-100 "
+                      : "max-h-0 opacity-0 p-0"
+                  }`}
                 >
                   {/* Botones para elegir rango */}
                   <div className="flex gap-1 pl-2 pt-2 mr-auto">
@@ -232,7 +231,8 @@ export default function Home() {
                           }))
                         }
                         className={`px-2 py-1 rounded text-xs border border-neutral-400 ${
-                          timeRanges[machine.id] === range || (!timeRanges[machine.id] && range === "24h")
+                          timeRanges[machine.id] === range ||
+                          (!timeRanges[machine.id] && range === "24h")
                             ? "bg-neutral-400 text-white"
                             : "bg-primary-night text-neutral-200 hover:bg-gray-300"
                         }`}

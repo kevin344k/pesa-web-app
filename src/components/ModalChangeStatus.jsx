@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import ModalParalizaciones from "./ModalParalizaciones";
-
+import save_icon from "../assets/save.svg"
 export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
   if (!isOpen) return null;
   const socketURL = import.meta.env.VITE_SOCKET_URL;
@@ -15,16 +15,23 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
   const [codigoProd, setcodigoProd] = useState(lineSelect.codigo ?? "");
   const [paralizacionSeleccionada, setParalizacionSeleccionada] =
     useState(null);
-    const [buscando, setBuscando] = useState(false);
-
+  const [buscando, setBuscando] = useState(false);
 
   const handleStatus = (state) => {
     setNewStatus(state);
-    if (state === "STOP") {
+   
+
+ if (state === "STOP") {
       setShowModal(true);
+    } else if (state === "SIN_OP") {
+         setParalizacionSeleccionada({ codigo:401, descripcion:"SIN ORDEN" });
     } else {
-      setParalizacionSeleccionada(null); // Limpiar si no es STOP
+       setParalizacionSeleccionada(null); // Limpiar si no es STOP o SIN_OP
     }
+
+
+  
+
   };
 
   const handleSuccessClose = () => {
@@ -63,7 +70,7 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
         body: JSON.stringify({
           id: lineSelect.id,
           status: newStatus,
-          codigo:codigoProd,
+          codigo: codigoProd,
           producto: newProduct,
           meta: meta,
           fabricado: fabricado,
@@ -76,7 +83,7 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Error al actualizar");
 
-      toast.success("Actualización exitosa 🎉");
+      toast.success("Actualización exitosa ");
       handleSuccessClose();
     } catch (error) {
       toast.error("Error: " + error.message);
@@ -85,36 +92,35 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
     }
   };
 
-let buscarTimeout;
+  let buscarTimeout;
 
-const handleChangeInputCodigo = async (value) => {
-  clearTimeout(buscarTimeout);
-  setcodigoProd(value);
-  setBuscando(true);
+  const handleChangeInputCodigo = async (value) => {
+    clearTimeout(buscarTimeout);
+    setcodigoProd(value);
+    setBuscando(true);
 
-  buscarTimeout = setTimeout(async () => {
-    try {
-      const res = await fetch(`${socketURL}/productos`);
-      const data = await res.json();
-      setCodigos(data);
+    buscarTimeout = setTimeout(async () => {
+      try {
+        const res = await fetch(`${socketURL}/productos`);
+        const data = await res.json();
+        setCodigos(data);
 
-      const encontrado = data.find(
-        (prod) => prod.item.trim() === value.trim().toUpperCase()
-      );
+        const encontrado = data.find(
+          (prod) => prod.item.trim() === value.trim().toUpperCase()
+        );
 
-      if (encontrado) {
-        setNewProduct(encontrado.observacion);
-      } else {
-        setNewProduct("NO ENCONTRADO");
+        if (encontrado) {
+          setNewProduct(encontrado.observacion);
+        } else {
+          setNewProduct("NO ENCONTRADO");
+        }
+      } catch (error) {
+        console.error("Error al buscar código:", error);
+      } finally {
+        setBuscando(false);
       }
-    } catch (error) {
-      console.error("Error al buscar código:", error);
-    } finally {
-      setBuscando(false);
-    }
-  }, 600); // espera 600ms tras la última tecla
-};
-
+    }, 600); // espera 600ms tras la última tecla
+  };
 
   return (
     <div
@@ -122,12 +128,12 @@ const handleChangeInputCodigo = async (value) => {
       onClick={onClose}
     >
       <div
-        className="w-[90%] max-w-md bg-white rounded-2xl shadow-xl p-6 relative"
+        className="w-[90%] max-w-md bg-white rounded-2xl shadow-xl p-6 px-4 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-lg"
+          className="absolute top-2 right-3 text-gray-500 hover:text-gray-800 text-lg"
         >
           ✕
         </button>
@@ -171,30 +177,35 @@ const handleChangeInputCodigo = async (value) => {
             })}
           </div>
 
-          <div className=" flex flex-col text-left">
-            <div className="mt-5 flex flex-col ">
-              <label className="text-purple-500" htmlFor="producto-input">
-                Producto
-              </label>
+          <div className=" flex  flex-row-reverse gap-2  text-left">
+            <div className="mt-5 relative w-full max-w-80">
               <input
-                className="bg-gray-200 text-gray-600 max-w-80 border-2 border-gray-200 rounded w-full py-2 px-4 text-neutral-400 focus:outline-none focus:bg-white focus:border-purple-500"
-                type="text"
-               placeholder={buscando ? "Buscando..." : ""}
                 id="producto-input"
+                type="text"
+                placeholder=" " // espacio obligatorio para activar peer-placeholder-shown
+                disabled
+                className="peer bg-gray-200 text-xs  text-gray-600 border-2 border-gray-200 rounded w-full py-2 px-2 text-neutral-400 focus:outline-none focus:bg-white focus:border-purple-500"
                 onChange={(e) => setNewProduct(e.target.value)}
                 value={newProduct}
-                disabled
               />
-            </div>
-            <div className="mt-5 flex gap-1 flex-col">
-              <label className="text-purple-500" htmlFor="producto-input">
-                Codigo
+              <label
+                htmlFor="producto-input"
+                className="absolute left-2 top-2 text-gray-500 text-sm transition-all 
+               peer-placeholder-shown:top-2 peer-placeholder-shown:bg-gray-200 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm 
+               peer-focus:-top-3 peer-focus:bg-white peer-focus:text-xs peer-focus:text-purple-500
+               peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:bg-white  peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-purple-500
+                px-1 rounded"
+              >
+                Producto
               </label>
+            </div>
+
+            <div className="mt-5 relative ">
               <input
-                className="bg-gray-200 max-w-30 border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
-                type="text"
-                placeholder="Codigo"
                 id="codigo-input"
+                type="text"
+                placeholder=" " // espacio vacío obligatorio para peer-placeholder-shown
+                className="peer  bg-gray-100 min-w-23 max-w-30 border-1 border-gray-200 rounded w-full py-2 px-2 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
                 onChange={(e) => {
                   const value = e.target.value;
                   if (/^[a-zA-Z0-9]*$/.test(value)) {
@@ -203,42 +214,69 @@ const handleChangeInputCodigo = async (value) => {
                 }}
                 value={codigoProd ?? ""}
               />
+              <label
+                htmlFor="codigo-input"
+                className="absolute left-2 top-2 text-gray-500 text-sm transition-all 
+               peer-placeholder-shown:top-2 peer-placeholder-shown:bg-gray-200 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm 
+               peer-focus:-top-3 peer-focus:bg-white peer-focus:text-xs peer-focus:text-purple-500
+               peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:bg-white  peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-purple-500
+                px-1 rounded"
+              >
+                Código
+              </label>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
-            <div className="mt-5">
-              <label className="text-purple-500" htmlFor="meta-input">
-                Meta
-              </label>
+          <div className="flex items-center justify-center gap-2 border-t my-4 border-neutral-300">
+            <div className="mt-5 relative w-full">
               <input
-                className="bg-gray-200 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
-                type="text"
                 id="meta-input"
-                placeholder="Meta"
+                type="text"
+                placeholder=" " // espacio vacío obligatorio para el efecto
+                className="peer bg-gray-100 border-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
                 onChange={(e) => {
                   const value = e.target.value;
                   if (/^\d*\.?\d*$/.test(value)) setMeta(value);
                 }}
                 value={meta}
               />
+              <label
+                htmlFor="meta-input"
+                className="absolute left-2 top-2 text-gray-500 text-sm transition-all 
+               peer-placeholder-shown:top-2 peer-placeholder-shown:bg-gray-200 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm 
+               peer-focus:-top-3 peer-focus:bg-white peer-focus:text-xs peer-focus:text-purple-500
+               peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:bg-white  peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-purple-500
+                px-1 rounded"
+              >
+                Meta
+              </label>
             </div>
 
-            <div className="mt-5">
-              <label className="text-purple-500" htmlFor="fabricado-input">
-                Fabricado
-              </label>
+            <div className="mt-5 relative w-full">
               <input
-                className="bg-gray-200 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
-                type="text"
-                placeholder="Fabricado"
                 id="fabricado-input"
+                type="text"
+                placeholder=" " // placeholder vacío para activar peer-placeholder-shown
+                className="peer bg-gray-100 border-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-purple-500"
                 onChange={(e) => {
                   const value = e.target.value;
                   if (/^\d*\.?\d*$/.test(value)) setFabricado(value);
                 }}
                 value={fabricado}
               />
+              <label
+                htmlFor="fabricado-input"
+                className="absolute left-2 top-2 text-gray-500 text-sm transition-all 
+               peer-placeholder-shown:top-2 peer-placeholder-shown:bg-gray-200 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm 
+               peer-focus:-top-3 peer-focus:bg-white peer-focus:text-xs peer-focus:text-purple-500
+               peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:bg-white  peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-purple-500
+                px-1 rounded"
+              >
+                Fabricado
+              </label>
+            </div>
+            <div className="hidden w-10 mt-5 h-fit shrink-0 rounded-lg bg-orange-100 p-2">
+              <img src={save_icon} alt="" />
             </div>
           </div>
 
@@ -255,13 +293,20 @@ const handleChangeInputCodigo = async (value) => {
             </div>
           )}
 
-          <div className="mt-6">
+          <div className="mt-6 flex gap-3 items-center justify-center">
             <button
               onClick={handleSubmit}
               disabled={loading}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-semibold transition"
             >
               {loading ? "Actualizando..." : "Guardar cambios"}
+            </button>
+              <button
+             
+              disabled={loading}
+              className="bg-orange-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-semibold transition"
+            >
+              {loading ? "Finalizando..." : "Finalizar"}
             </button>
           </div>
         </div>
