@@ -39,7 +39,7 @@ export default function Dash() {
 
     const containerWidth = container.clientWidth || 400;
     const containerHeight = 200;
-    const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+    const margin = { top: 10, right: 10, bottom: 30, left: 20 };
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
 
@@ -114,9 +114,21 @@ export default function Dash() {
     svg
       .append("g")
       .attr("transform", `translate(0,${height})`)
-      .call(d3.axisBottom(x).ticks(5).tickFormat(d3.timeFormat("%b %d")));
-
+      .call(d3.axisBottom(x).ticks(5).tickFormat(d3.timeFormat("%b %d")))
+      .selectAll("text")
+  .style("fill", "#fff"); // texto blanco
     svg.append("g").call(d3.axisLeft(y).ticks(5));
+
+svg.selectAll(".domain, .tick line") // línea base y ticks
+  .style("stroke", "#aaa"); // líneas más claras
+// Eje Y
+const yAxis = svg.append("g").call(d3.axisLeft(y).ticks(5));
+yAxis.selectAll("text").style("fill", "#fff"); // texto blanco
+yAxis.selectAll(".domain, .tick line").style("stroke", "#aaa"); // líneas claras
+
+
+
+
   }, [data]);
 
   return (
