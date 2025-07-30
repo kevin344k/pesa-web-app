@@ -9,6 +9,7 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
   const [newProduct, setNewProduct] = useState(lineSelect.producto);
   const [meta, setMeta] = useState(lineSelect.meta);
   const [fabricado, setFabricado] = useState(lineSelect.fabricado);
+
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [codigos, setCodigos] = useState([]);
@@ -121,6 +122,47 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
       }
     }, 600); // espera 600ms tras la última tecla
   };
+
+  //  método para finalizar orden
+  const handleFinalizar = async () => {
+    if (!meta || !fabricado) {
+      toast.error("Debe ingresar meta y fabricado antes de finalizar.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch(`${socketURL}/finalizar-orden`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: lineSelect.id,
+          meta,
+          shift_id:1,
+          fabricado,
+          efficiency:(fabricado/meta)*100,
+          paralizacion:4701,
+          descripcion_paralizacion:"SIN ORDEN"
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Error al finalizar");
+
+      toast.success("Orden finalizada y eficiencia guardada ✅");
+      handleSuccessClose();
+    } catch (error) {
+      toast.error("Error: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+
+
+
 
   return (
     <div
@@ -275,8 +317,8 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
                 Fabricado
               </label>
             </div>
-            <div className="hidden w-10 mt-5 h-fit shrink-0 rounded-lg bg-orange-100 p-2">
-              <img src={save_icon} alt="" />
+            <div className=" w-12 mt-5 h-fit shrink-0 rounded-lg bg-orange-100 p-2">
+              {((fabricado/meta)*100).toFixed()}%
             </div>
           </div>
 
@@ -302,7 +344,7 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
               {loading ? "Actualizando..." : "Guardar cambios"}
             </button>
               <button
-             
+             onClick={handleFinalizar}
               disabled={loading}
               className="bg-orange-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-semibold transition"
             >
