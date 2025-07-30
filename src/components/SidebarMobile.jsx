@@ -43,6 +43,9 @@ export default function SidebarMobile() {
           <Link to="/paralizaciones" onClick={() => setOpen(false)}>
             Paralizaciones
           </Link>
+              <Link to="/dash" onClick={() => setOpen(false)}>
+            Dasboard
+          </Link>
         </nav>
       </div>
     </>

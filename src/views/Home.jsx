@@ -234,7 +234,7 @@ export default function Home() {
                   </div>
 
                   {isExpanded && (
-                    <div className="border border-neutral-600 rounded flex flex-col items-center justify-center mt-1 p-2 w-full">
+                    <div className="border overflow-scroll border-neutral-600 rounded flex flex-col items-center justify-center mt-1 p-2 w-full">
                       {/* Botones para elegir rango */}
                       <div className="flex gap-1 pl-2 pt-2 mr-auto">
                         {ranges.map((range) => (

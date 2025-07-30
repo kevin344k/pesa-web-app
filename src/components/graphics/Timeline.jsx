@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from "react";
 export default function Timeline({ machineId, timeRange }) {
   const ref = useRef();
   const [logs, setLogs] = useState([]);
-  const [containerWidth, setContainerWidth] = useState(600); // ancho inicial
+  const [containerWidth, setContainerWidth] = useState(600);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const res = await fetch(
           `${import.meta.env.VITE_SOCKET_URL}/timeline/${machineId}?range=${timeRange}`
         );
@@ -22,17 +24,21 @@ export default function Timeline({ machineId, timeRange }) {
           end: d.end_timestamp,
           status: d.status,
         }));
-
+        
         setLogs(formatted);
+      
+        
       } catch (err) {
         console.error("Error obteniendo timeline:", err);
+        setLogs([]);
+      } finally {
+        setLoading(false);
       }
     };
 
     if (machineId) fetchData();
   }, [machineId, timeRange]);
 
-  // Detectar el ancho del contenedor dinámicamente
   useEffect(() => {
     const container = ref.current?.parentElement;
     if (!container) return;
@@ -69,8 +75,8 @@ export default function Timeline({ machineId, timeRange }) {
       .append("svg")
       .attr("width", containerWidth)
       .attr("height", height + margin.top + margin.bottom)
-       .style("display", "block")       // <--- Añadido
-  .style("margin", "0 auto") 
+      .style("display", "block")
+      .style("margin", "0 auto")
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -100,14 +106,13 @@ export default function Timeline({ machineId, timeRange }) {
       .attr("y", 10)
       .attr("width", (d) => x(d.end) - x(d.start))
       .attr("height", 20)
-        .attr("rx", 1) // esquinas redondeadas
-  .attr("ry", 1) // esquinas redondeadas
+      .attr("rx", 1)
+      .attr("ry", 1)
       .attr("fill", (d) => ({
-  RUN: "#4ade80",
-  STOP: "#f87171",
-  SIN_OP: "#9ca3af",
-}[d.status] || "#f87171")) // fallback rojo
-
+        RUN: "#4ade80",
+        STOP: "#f87171",
+        SIN_OP: "#9ca3af",
+      }[d.status] || "#f87171"))
       .on("mouseover", function (event, d) {
         const durationMinutes = Math.round((d.end - d.start) / (1000 * 60));
         const durationText =
@@ -139,7 +144,7 @@ export default function Timeline({ machineId, timeRange }) {
     svg
       .append("g")
       .attr("transform", `translate(0, ${height - 5})`)
-     
+   
       .selectAll("text")
       .style("text-anchor", "end")
       .attr("transform", "rotate(-45)")
@@ -147,5 +152,13 @@ export default function Timeline({ machineId, timeRange }) {
       .attr("dy", "0.15em");
   }, [logs, containerWidth]);
 
-  return <div ref={ref} className="overflow-x-auto  py-5 flex justify-center items-center w-full" />;
+  return (
+  
+        <div
+          ref={ref}
+          className="overflow-x-auto py-5 flex justify-center items-center w-full"
+        />
+      
+  
+  );
 }

@@ -4,6 +4,7 @@ import { createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./views/Home";
 import Dashboard from "./views/Dashboard";
+import Dash from "./views/Dash";
 import SidebarMobile from "./components/SidebarMobile";
 import { Toaster } from "react-hot-toast";
 
@@ -18,6 +19,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/paralizaciones" element={<Dashboard />} />
+          <Route path="/dash" element={<Dash />} />
         </Routes>
         <Toaster position="top-right" reverseOrder={false} />
       </Router>
