@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import toast from "react-hot-toast";
 import TimelineRUNSTOP from "../components/graphics/Timeline";
 import Modal from "../components/ModalChangeStatus";
 import NumberFlow from "@number-flow/react";
@@ -115,13 +114,13 @@ export default function Home() {
             <p className="mt-4 text-white text-sm">Cargando datos...</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 w-full place-items-center gap-3">
+          <div className="grid grid-cols-1 w-full md:grid-cols-2 place-items-center gap-3">
             {machines.map((machine, index) => {
               const isExpanded = expandedMachines[machine.id];
               const loadingTimeline = loadingTimelineById[machine.id] || false;
 
               return (
-                <div key={index} className="w-full ">
+                <div key={index} className="w-full self-start">
                   <div
                     className={`relative ${
                       machine.status === "STOP" || machine.status === "SIN_OP"

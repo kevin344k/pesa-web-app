@@ -83,7 +83,7 @@ export default function Dash() {
     gradient
       .append("stop")
       .attr("offset", "100%")
-      .attr("stop-color", "rgba(168, 85, 247, 0.1)");
+      .attr("stop-color", "rgba(169, 85, 247, 0.04)");
 
     const area = d3
       .area()
@@ -147,7 +147,7 @@ yAxis.selectAll(".domain, .tick line").style("stroke", "#aaa"); // líneas clara
               style={{
                 height: `${dat.porcentaje}%`,
                 background:
-                  "linear-gradient(to top, rgba(169, 85, 247, 0.44), rgba(192, 132, 252, 0.25))",
+                  "linear-gradient(to top,rgba(169, 85, 247, 0.06), rgba(169, 85, 247, 0.44))",
               }}
             />
             <div className="relative z-10 flex flex-col items-center justify-center h-full">
