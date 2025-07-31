@@ -132,7 +132,7 @@ yAxis.selectAll(".domain, .tick line").style("stroke", "#aaa"); // líneas clara
   }, [data]);
 
   return (
-    <div className="bg-[#18181b] min-h-screen p-6">
+    <div className="bg-secondary-night min-h-screen p-6">
       <p className="text-center font-bold text-white text-xl mb-4">Dashboard</p>
       <p className="text-neutral-500">Bodegas Rollos FOAM </p>
 
@@ -140,7 +140,7 @@ yAxis.selectAll(".domain, .tick line").style("stroke", "#aaa"); // líneas clara
         {animatedData.map((dat, index) => (
           <div
             key={index}
-            className="relative bg-[#313133] rounded-md h-32 shadow-lg flex flex-col justify-end overflow-hidden border border-neutral-700"
+            className="relative bg-[#313133] rounded-xl h-32 shadow-lg flex flex-col justify-end overflow-hidden border border-neutral-700"
           >
             <div
               className="absolute bottom-0 border-t-2 border-purple-700 left-0 w-full transition-all duration-700"

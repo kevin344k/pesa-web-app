@@ -46,6 +46,9 @@ export default function SidebarMobile() {
               <Link to="/dash" onClick={() => setOpen(false)}>
             Dasboard
           </Link>
+           <Link to="/cpk" onClick={() => setOpen(false)}>
+            Cpk
+          </Link>
         </nav>
       </div>
     </>

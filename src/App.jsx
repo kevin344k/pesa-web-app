@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./views/Home";
 import Dashboard from "./views/Dashboard";
 import Dash from "./views/Dash";
+import Cpk from "./views/Cpk";
 import SidebarMobile from "./components/SidebarMobile";
 import { Toaster } from "react-hot-toast";
 
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/paralizaciones" element={<Dashboard />} />
           <Route path="/dash" element={<Dash />} />
+          <Route path="/cpk" element={<Cpk />} />
         </Routes>
         <Toaster position="top-right" reverseOrder={false} />
       </Router>

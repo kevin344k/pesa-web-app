@@ -22,7 +22,7 @@ export default function Dashboard() {
     fetchLogs();
   }, []);
 
-  console.log(logs);
+
 
 
 //////por paralizacion
@@ -56,7 +56,7 @@ const dataChartMachina = Object.entries(dataAgrupadaMachina)
 
 
 
-console.log(dataChartMachina);
+
 
   
   return (
