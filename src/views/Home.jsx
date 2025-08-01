@@ -114,7 +114,7 @@ export default function Home() {
             <p className="mt-4 text-white text-sm">Cargando datos...</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 w-full md:grid-cols-2 place-items-center gap-3">
+          <div className="grid grid-cols-1 w-full md:grid-cols-2 place-items-center gap-6">
             {machines.map((machine, index) => {
               const isExpanded = expandedMachines[machine.id];
               const loadingTimeline = loadingTimelineById[machine.id] || false;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import ModalParalizaciones from "./ModalParalizaciones";
-import save_icon from "../assets/save.svg"
+import save_icon from "../assets/save.svg";
 export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
   if (!isOpen) return null;
   const socketURL = import.meta.env.VITE_SOCKET_URL;
@@ -20,19 +20,14 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
 
   const handleStatus = (state) => {
     setNewStatus(state);
-   
 
- if (state === "STOP") {
+    if (state === "STOP") {
       setShowModal(true);
     } else if (state === "SIN_OP") {
-         setParalizacionSeleccionada({ codigo:401, descripcion:"SIN ORDEN" });
+      setParalizacionSeleccionada({ codigo: 401, descripcion: "SIN ORDEN" });
     } else {
-       setParalizacionSeleccionada(null); // Limpiar si no es STOP o SIN_OP
+      setParalizacionSeleccionada(null); // Limpiar si no es STOP o SIN_OP
     }
-
-
-  
-
   };
 
   const handleSuccessClose = () => {
@@ -120,7 +115,7 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
       } finally {
         setBuscando(false);
       }
-    }, 600); // espera 600ms tras la última tecla
+    }, 200); // espera 600ms tras la última tecla
   };
 
   //  método para finalizar orden
@@ -138,11 +133,11 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
         body: JSON.stringify({
           id: lineSelect.id,
           meta,
-          shift_id:1,
+          shift_id: 1,
           fabricado,
-          efficiency:(fabricado/meta)*100,
-          paralizacion:4701,
-          descripcion_paralizacion:"SIN ORDEN"
+          efficiency: (fabricado / meta) * 100,
+          paralizacion: 4701,
+          descripcion_paralizacion: "SIN ORDEN",
         }),
       });
 
@@ -157,12 +152,6 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
       setLoading(false);
     }
   };
-
-
-
-
-
-
 
   return (
     <div
@@ -219,27 +208,19 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
             })}
           </div>
 
-          <div className=" flex  flex-row-reverse gap-2  text-left">
-            <div className="mt-5 relative w-full max-w-80">
-              <input
-                id="producto-input"
-                type="text"
-                placeholder=" " // espacio obligatorio para activar peer-placeholder-shown
-                disabled
-                className="peer bg-gray-200 text-xs  text-gray-600 border-2 border-gray-200 rounded w-full py-2 px-2 text-neutral-400 focus:outline-none focus:bg-white focus:border-purple-500"
-                onChange={(e) => setNewProduct(e.target.value)}
-                value={newProduct}
-              />
-              <label
-                htmlFor="producto-input"
-                className="absolute left-2 top-2 text-gray-500 text-sm transition-all 
-               peer-placeholder-shown:top-2 peer-placeholder-shown:bg-gray-200 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-sm 
-               peer-focus:-top-3 peer-focus:bg-white peer-focus:text-xs peer-focus:text-purple-500
-               peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:bg-white  peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-purple-500
-                px-1 rounded"
-              >
-                Producto
-              </label>
+          <div className=" flex items-center justify-center flex-row-reverse gap-4  text-left">
+            <div className=" relative w-full ">
+              <div className="mt-5 flex items-center gap-2">
+                {buscando && (
+                  <div className="flex items-center gap-2 text-blue-500">
+                    <span>Buscando...</span>
+                    <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+                {!buscando && newProduct && (
+                  <p className=" text-sm text-gray-700">{newProduct}</p>
+                )}
+              </div>
             </div>
 
             <div className="mt-5 relative ">
@@ -318,7 +299,7 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
               </label>
             </div>
             <div className=" w-12 mt-5 h-fit shrink-0 rounded-lg bg-orange-100 p-2">
-              {((fabricado/meta)*100).toFixed()}%
+              {((fabricado / meta) * 100).toFixed()}%
             </div>
           </div>
 
@@ -343,8 +324,8 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
             >
               {loading ? "Actualizando..." : "Guardar cambios"}
             </button>
-              <button
-             onClick={handleFinalizar}
+            <button
+              onClick={handleFinalizar}
               disabled={loading}
               className="bg-orange-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-semibold transition"
             >
