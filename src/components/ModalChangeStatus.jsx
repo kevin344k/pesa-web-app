@@ -298,9 +298,12 @@ export default function ModalChangeStatus({ isOpen, onClose, lineSelect }) {
                 Fabricado
               </label>
             </div>
-            <div className=" w-12 mt-5 h-fit shrink-0 rounded-lg bg-orange-100 p-2">
-              {((fabricado / meta) * 100).toFixed()}%
-            </div>
+         <div className="w-12 mt-5 h-fit shrink-0 rounded-lg bg-orange-100 p-2 text-center">
+  {meta > 0 && !isNaN(fabricado)
+    ? `${((fabricado / meta) * 100).toFixed()}%`
+    : "0%"}
+</div>
+
           </div>
 
           {/* ✅ Mostrar código y motivo debajo solo si es STOP */}
