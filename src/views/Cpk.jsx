@@ -135,7 +135,7 @@ console.log(card);
           {cards.map((card, index) => (
             <div
               key={index}
-              className="relative p-2 pt-4 gap-2 border overflow-hidden border-neutral-600 rounded-md justify-center opacity-0 translate-y-4 animate-[fadeInUp_0.4s_ease-out_forwards]"
+              className="relative p-2 pt-4 gap-2 border  border-neutral-600 rounded-md justify-center opacity-0 translate-y-4 animate-[fadeInUp_0.4s_ease-out_forwards]"
             >
               <span className="absolute  top-0 rounded-br-full text-left p-2 pl-1 bg-neutral-400 left-0">
                 {index + 1}
@@ -162,7 +162,7 @@ console.log(card);
                       onChange={(e) =>
                         handleChange(index, "weight", e.target.value)
                       }
-                      className="p-2 rounded bg-[#1f1f21] text-white"
+                      className="p-2 rounded bg-[#1f1f21] max-w-32 text-white"
                     />
                   </div>
                   <button
